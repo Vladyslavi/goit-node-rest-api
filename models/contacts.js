@@ -1,8 +1,6 @@
-const { Schema, model } = require('mongoose');
-
-const Joi = require('joi');
-
-const handleMongooseError = require('../helpers/handleMongooseError');
+import { Schema, model } from 'mongoose';
+import Joi from 'joi';
+import handleMongooseError from '../helpers/handleMongooseError';
 
 const contactSchema = new Schema(
     {
@@ -49,7 +47,7 @@ const updateFavoriteSchema = Joi.object({
 
 const Contact = model('contacts', contactSchema);
 
-module.exports = {
+export {
     Contact,
     addSchema,
     updateFavoriteSchema,

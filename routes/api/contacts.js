@@ -1,12 +1,12 @@
-const express = require('express');
+import express from 'express';
 
-const ctrl = require('../../controllers/contacts');
+import ctrl from '../../controllers/contacts';
 
-const validateBody = require('../../middlewares/validateBody');
-const checkBody = require('../../middlewares/checkBody');
-const isValidId = require('../../middlewares/isValidId');
+import validateBody from '../../middlewares/validateBody';
+import checkBody from '../../middlewares/checkBody';
+import isValidId from '../../middlewares/isValidId';
 
-const schemas = require('../../models/contact');
+import schemas from '../../models/contact';
 
 const router = express.Router();
 
@@ -33,4 +33,4 @@ router.patch(
     ctrl.updateStatusContact
 );
 
-module.exports = router;
+export default router;

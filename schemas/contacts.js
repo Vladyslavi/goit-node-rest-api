@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const addSchema = Joi.object({
     name: Joi.string().required().messages({
@@ -12,6 +12,4 @@ const addSchema = Joi.object({
     }),
 });
 
-module.exports = {
-    addSchema,
-};
+export { addSchema };
