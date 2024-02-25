@@ -1,12 +1,12 @@
 import express from 'express';
 
-import ctrl from '../../controllers/contacts';
+import ctrl from '../../controllers/contacts.js';
 
-import validateBody from '../../middlewares/validateBody';
-import checkBody from '../../middlewares/checkBody';
-import isValidId from '../../middlewares/isValidId';
+import validateBody from '../../middlewares/validateBody.js';
+import checkBody from '../../middlewares/checkBody.js';
+import isValidId from '../../middlewares/isValidId.js';
 
-import schemas from '../../models/contact';
+import schemas from '../../models/contact.js';
 
 const router = express.Router();
 
