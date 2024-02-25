@@ -6,7 +6,7 @@ import validateBody from '../../middlewares/validateBody.js';
 import checkBody from '../../middlewares/checkBody.js';
 import isValidId from '../../middlewares/isValidId.js';
 
-import schemas from '../../models/contact';
+import schemas from '../../models/contact.js';
 
 const router = express.Router();
 
