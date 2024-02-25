@@ -1,4 +1,4 @@
-import HttpError from '../helpers/HttpError';
+import HttpError from '../helpers/HttpError.js';
 
 const checkBody = (req, res, next) => {
     const { body } = req;
