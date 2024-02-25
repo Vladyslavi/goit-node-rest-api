@@ -25,4 +25,4 @@ app.use((err, req, res, next) => {
     res.status(status).json({ message });
 });
 
-export const module = app;
+export default app;
