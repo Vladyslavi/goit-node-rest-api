@@ -1,11 +1,11 @@
-const HttpError = require('../helpers/HttpError');
+import HttpError from '../helpers/HttpError';
 
 const checkBody = (req, res, next) => {
-    const body = req.body;
+    const { body } = req;
     if (Object.keys(body).length === 0) {
-        throw HttpError(400, 'missing fields');
+        throw new HttpError(400, 'missing fields');
     }
     next();
 };
 
-module.exports = checkBody;
+export default checkBody;
