@@ -1,6 +1,6 @@
-import { Contact } from '../models/contact';
-import HttpError from '../helpers/HttpError';
-import ctrlWrapper from '../helpers/ctrlWrapper';
+import { Contact } from '../models/contact.js';
+import HttpError from '../helpers/HttpError.js';
+import ctrlWrapper from '../helpers/ctrlWrapper.js';
 
 const listContacts = async (req, res) => {
     const result = await Contact.find({}, '-createdAt -updatedAt');
