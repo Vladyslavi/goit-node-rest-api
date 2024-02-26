@@ -57,7 +57,7 @@ const updateStatusContact = async (req, res) => {
     res.status(200).json(result);
 };
 
-export const Contact = {
+export default {
     listContacts: ctrlWrapper(listContacts),
     getContactById: ctrlWrapper(getContactById),
     removeContact: ctrlWrapper(removeContact),
