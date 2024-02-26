@@ -6,7 +6,7 @@ import validateBody from '../../middlewares/validateBody.js';
 import checkBody from '../../middlewares/checkBody.js';
 import isValidId from '../../middlewares/isValidId.js';
 
-import { schemas } from '../../models/contact.js';
+import { schemas } from '../../models/contacts.js';
 
 const router = express.Router();
 
@@ -33,10 +33,4 @@ router.patch(
     ctrl.updateStatusContact
 );
 
-const Contacts = model('contact', contactSchema);
-
-export const schemas = {
-    Contacts,
-    addContact,
-    updateFavoriteSchema
-};
+export default router;

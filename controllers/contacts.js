@@ -1,4 +1,4 @@
-import { Contact } from '../models/contact.js';
+import { Contact } from '../models/contacts.js';
 import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../helpers/ctrlWrapper.js';
 
@@ -57,7 +57,7 @@ const updateStatusContact = async (req, res) => {
     res.status(200).json(result);
 };
 
-export default {
+export const Contact = {
     listContacts: ctrlWrapper(listContacts),
     getContactById: ctrlWrapper(getContactById),
     removeContact: ctrlWrapper(removeContact),
