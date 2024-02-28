@@ -1,4 +1,4 @@
-import { Contact } from '../models/contacts.js';
+import { schemas } from '../models/contacts.js';
 import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../helpers/ctrlWrapper.js';
 
@@ -9,7 +9,7 @@ const listContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
     const { id } = req.params;
-    const result = await Contact.findById(id);
+    const result = await schemas.Contact.findById(id);
     if (!result) {
         throw new HttpError(404, 'Not found');
     }
@@ -17,13 +17,13 @@ const getContactById = async (req, res) => {
 };
 
 const addContact = async (req, res) => {
-    const result = await Contact.create(req.body);
+    const result = await schemas.Contact.create(req.body);
     res.status(201).json(result);
 };
 
 const removeContact = async (req, res) => {
     const { id } = req.params;
-    const result = await Contact.findByIdAndDelete(id);
+    const result = await schemas.Contact.findByIdAndDelete(id);
     if (!result) {
         throw new HttpError(404, 'Not found');
     }
@@ -34,7 +34,7 @@ const removeContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
     const { id } = req.params;
-    const result = await Contact.findByIdAndUpdate(id, req.body);
+    const result = await schemas.Contact.findByIdAndUpdate(id, req.body);
     if (!result) {
         throw new HttpError(404, 'Not found');
     }
@@ -49,7 +49,7 @@ const updateStatusContact = async (req, res) => {
         throw new HttpError(400, 'missing field favorite');
     }
 
-    const result = await Contact.findByIdAndUpdate(id, { favorite }, { new: true });
+    const result = await schemas.Contact.findByIdAndUpdate(id, { favorite }, { new: true });
 
     if (!result) {
         throw new HttpError(404, 'Not found');
