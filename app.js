@@ -4,7 +4,7 @@ import cors from 'cors';
 import 'dotenv/config'
 import contactsRouter from './routes/api/contacts.js';
 
-dotenv.config();
+// dotenv.config();
 
 
 const app = express();
