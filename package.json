@@ -9,6 +9,9 @@
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@types/node": "^20.11.20",
     "bcrypt": "^5.1.1",
