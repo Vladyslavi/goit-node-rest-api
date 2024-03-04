@@ -1,31 +1,31 @@
-import { schemas } from '../models/contacts.js';
-import HttpError from '../helpers/HttpError.js';
-import ctrlWrapper from '../helpers/ctrlWrapper.js';
+const contacts = require('../models/contacts');
+
+const { HttpError, ctrlWrapper } = require('../helpers');
 
 const listContacts = async (req, res) => {
-    const result = await Contact.find({}, '-createdAt -updatedAt');
+    const result = await contacts.listContacts();
     res.status(200).json(result);
 };
 
 const getContactById = async (req, res) => {
     const { id } = req.params;
-    const result = await schemas.Contact.findById(id);
+    const result = await contacts.getContactById(id);
     if (!result) {
-        throw new HttpError(404, 'Not found');
+        throw HttpError(404, 'Not found');
     }
     res.status(200).json(result);
 };
 
 const addContact = async (req, res) => {
-    const result = await schemas.Contact.create(req.body);
+    const result = await contacts.addContact(req.body);
     res.status(201).json(result);
 };
 
 const removeContact = async (req, res) => {
     const { id } = req.params;
-    const result = await schemas.Contact.findByIdAndDelete(id);
+    const result = await contacts.removeContact(id);
     if (!result) {
-        throw new HttpError(404, 'Not found');
+        throw HttpError(404, 'Not found');
     }
     res.json({
         message: 'contact deleted',
@@ -34,34 +34,19 @@ const removeContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
     const { id } = req.params;
-    const result = await schemas.Contact.findByIdAndUpdate(id, req.body);
+    const result = await contacts.updateContact(id, req.body);
     if (!result) {
-        throw new HttpError(404, 'Not found');
+        throw HttpError(404, 'Not found');
     }
-    res.status(200).json(result);
+    res.json({
+        message: 'contact updated',
+    });
 };
 
-const updateStatusContact = async (req, res) => {
-    const { id } = req.params;
-    const { favorite } = req.body;
-
-    if (favorite === undefined) {
-        throw new HttpError(400, 'missing field favorite');
-    }
-
-    const result = await schemas.Contact.findByIdAndUpdate(id, { favorite }, { new: true });
-
-    if (!result) {
-        throw new HttpError(404, 'Not found');
-    }
-    res.status(200).json(result);
-};
-
-export default {
+module.exports = {
     listContacts: ctrlWrapper(listContacts),
     getContactById: ctrlWrapper(getContactById),
     removeContact: ctrlWrapper(removeContact),
     addContact: ctrlWrapper(addContact),
     updateContact: ctrlWrapper(updateContact),
-    updateStatusContact: ctrlWrapper(updateStatusContact),
 };
