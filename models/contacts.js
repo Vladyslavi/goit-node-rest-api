@@ -2,6 +2,10 @@ import { Schema, model } from 'mongoose';
 import Joi from 'joi';
 import handleMongooseError from '../helpers/handleMongooseError.js';
 
+
+const nameRegex = '^[A-Z][a-z]+ [A-Z][a-z]+$';
+const phoneRegex = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
+
 const contactSchema = new Schema(
     {
         name: {
@@ -18,6 +22,12 @@ const contactSchema = new Schema(
             type: Boolean,
             default: false,
         },
+
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'user',
+            required: true,
+        },
     },
     { versionKey: false, timestamps: true }
 );
@@ -25,14 +35,14 @@ const contactSchema = new Schema(
 contactSchema.post('save', handleMongooseError);
 
 const addSchema = Joi.object({
-    name: Joi.string().required().messages({
+    name: Joi.string().pattern(new RegExp(nameRegex)).required().messages({
         'any.required': `Missing required name field`,
     }),
 
     email: Joi.string().required().messages({
         'any.required': `Missing required email field`,
     }),
-    phone: Joi.string().required().messages({
+    phone: Joi.string().pattern(new RegExp(phoneRegex)).required().messages({
         'any.required': `Missing required phone field`,
     }),
 
