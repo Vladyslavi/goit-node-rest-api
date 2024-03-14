@@ -3,13 +3,7 @@ import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../helpers/ctrlWrapper.js';
 
 const listContacts = async (req, res) => {
-    const { _id: owner } = req.user;
-    const { page = 1, limit = 20 } = req.query;
-    const skip = (page - 1) * limit;
-    const result = await Contact.find({ owner }, '-createdAt -updatedAt', {
-        skip,
-        limit,
-    }).populate('owner', 'email');
+    const result = await Contact.find({}, '-createdAt -updatedAt');
     res.status(200).json(result);
 };
 
@@ -23,8 +17,7 @@ const getContactById = async (req, res) => {
 };
 
 const addContact = async (req, res) => {
-    const { _id: owner } = req.user;
-    const result = await Contact.create({ ...req.body, owner });
+    const result = await schemas.Contact.create(req.body);
     res.status(201).json(result);
 };
 
